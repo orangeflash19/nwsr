@@ -50,7 +50,7 @@ app.get('/send',function(req,res){
             console.log('Email sent: ' + info.response);
         }
     });
-    alert('mail is sent');
+    //alert('mail is sent');
 });
 
 /*--------------------Routing Over----------------------------*/

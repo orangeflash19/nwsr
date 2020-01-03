@@ -3,6 +3,7 @@
 /*global console*/
 /*global document */
 /*jslint node: true*/
+/*global module*/
 console.log('its working');
 var witness = document.querySelector('#witness');
 var Admin = document.querySelector('#Admin');
@@ -18,8 +19,9 @@ var sendCredentials = document.querySelector('#sendCredentials');
 var sendCred = document.querySelector('#sendCred');
 var startVideoCall = document.querySelector('#startVideoCall');
 var videoPage = document.querySelector('#videoPage');
-var adminUsername;
-var adminPassword;
+var generatePassword = document.querySelector('#generatePassword');
+var passwordHolder = document.querySelector('#passwordHolder');
+var backToButtons = document.querySelector('#backToButtons');
 
 
 //initially all div are hiddeen
@@ -44,24 +46,6 @@ Admin.addEventListener('click', function () {
     AdminForm.style.display = 'block';
 });
 
-//admin form login to allow admin login
-function login(adminUsername, adminPassword) {
-    adminUsername = document.getElementById('adminUsername').value;
-    adminPassword = document.getElementById('adminPassword').value;
-    if (adminUsername == 'admin' && adminPassword == 'admin123') {
-        alert('admin logged in successfully');
-        AdminForm.style.display = 'none';
-        AdminButtons.style.display = 'block';
-    } else {
-        alert('invalid username or password');
-    }
-
-}
-AdminFormLogin.addEventListener('click', function (ev) {
-    //condition to check the admin username and password and allow login
-    login();
-    ev.preventDefault();
-}, false);
 
 //admin can send credentials to the witness email
 sendCredentials.addEventListener('click', function (ev) {
@@ -69,34 +53,20 @@ sendCredentials.addEventListener('click', function (ev) {
     sendMail.style.display = 'block';
     ev.preventDefault();
 }, false);
-var witpass;
-generatePassword.addEventListener('click',pass);
-   // sendMail.style.display = 'none';
-    //videoPage.style.display = 'block';
-function pass(){
-  var password = generatePass();
-  passwordHolder.textContent = password;
-  //func1()
-  return password;
-  //ev.preventDefault();
-}
-var globalVariable={
-  x:password
-};
-function generatePass() {
-    var length = 8,
-        charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789",
-        retVal = "";
-    for (var i = 0, n = charset.length; i < length; ++i) {
-        retVal += charset.charAt(Math.floor(Math.random() * n));
-    }
-    return retVal;
-}
 
+//generatePassword.addEventListener('click', function () {
+//    // sendMail.style.display = 'none';
+//    //videoPage.style.display = 'block';
+//    newPass();
+//    ev.preventDefault();
+//}, false);
+
+
+
+//back button on send mail form to go back to admin buttons
 backToButtons.addEventListener('click', function (ev) {
-     sendMail.style.display = 'none';
-     AdminButtons.style.display = 'block';
-    //videoPage.style.display = 'block';
+    sendMail.style.display = 'none';
+    AdminButtons.style.display = 'block';
     ev.preventDefault();
 }, false);
 
@@ -111,25 +81,30 @@ startVideoCall.addEventListener('click', function (ev) {
     ev.preventDefault();
 }, false);
 
+
 //witness form login to allow witness to login
 function witnesslogin() {
     witnessEmail = document.getElementById('witnessEmail').value;
     witnessPassword = document.getElementById('witnessPassword').value;
-    console.log(globalVariable.x);
-    if (witnessPassword == globalVariable.x) {
-        alert('admin logged in successfully ' + witnessPassword );
-        //witnessForm.style.display = 'none';
-        //videoPage.style.display = 'block';
-    } else {
-        alert('invalid credentials ' + witnessPassword);
-    }
+
+
+    //    if (witnessPassword == witPass) {
+    //        alert('admin logged in successfully ' + witnessPassword);
+    //        console.log(witPass);
+    //        //witnessForm.style.display = 'none';
+    //        //videoPage.style.display = 'block';
+    //    } else {
+    //        alert('invalid credentials ' + witnessPassword + witPass);
+    //    }
 
 }
-//witness can go to the video call
-witnessFormLogin.addEventListener('click', function (ev) {
-    //witnessForm.style.display = 'none';
-    //witnessLoader.style.display = 'block';
-    //videoPage.style.display = 'block';
-     witnesslogin();
-    ev.preventDefault();
-}, false);
+
+
+//witnessFormLogin.addEventListener('click', function (ev) {
+//    //witnessForm.style.display = 'none';
+//    //witnessLoader.style.display = 'block';
+//    //videoPage.style.display = 'block';
+//
+//    //witnesslogin();
+//    ev.preventDefault();
+//}, false);
